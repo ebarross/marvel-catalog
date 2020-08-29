@@ -19,6 +19,7 @@ export default createGlobalStyle`
   body, input, button {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 16px;
+    color: ${(props) => props.theme.colors.dark};
   }
 
   h1, h2, h3, h4, h5, h6, strong {
@@ -27,5 +28,26 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0px auto;
+
+    @media (min-width: 576px) {
+      max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+      max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 1140px;
+    }
   }
 `;
