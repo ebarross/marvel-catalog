@@ -1,70 +1,18 @@
 import React from 'react';
+import { Comic as ComicType } from '../../data/models/comic';
 import Comic from '../Comic';
 import { Container } from './styles';
 
-const ComicList: React.FC = () => {
+type Props = {
+  comics: ComicType[];
+};
+
+const ComicList: React.FC<Props> = ({ comics }) => {
   return (
     <Container>
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
-      <Comic
-        image="http://i.annihil.us/u/prod/marvel/i/mg/7/90/59d53e9c744f8.jpg"
-        title="Hulk (2016) #9"
-        authors="Christopher, Gaston, Velarde, Harrington, Milla, Petit,
-            Tamaki"
-      />
+      {comics.map((c: ComicType) => {
+        return <Comic key={c.id} data={c} />;
+      })}
     </Container>
   );
 };

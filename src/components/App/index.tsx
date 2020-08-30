@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import Layout from './components/Layout';
-import GlobalStyles from './styles/global';
-import { theme } from './theme';
+import GlobalStyles from '../../styles/global';
+import { theme } from '../../theme';
+import Layout from '../Layout';
 
 const App: React.FC = () => {
   return (

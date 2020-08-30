@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from '../Navbar';
-import Routes from '../Routes';
+import Router from '../Router';
 import { Container, Content } from './styles';
 
 const Layout: React.FC = () => {
@@ -11,7 +11,7 @@ const Layout: React.FC = () => {
         <Navbar />
 
         <Content>
-          <Routes />
+          <Router />
         </Content>
       </BrowserRouter>
     </Container>

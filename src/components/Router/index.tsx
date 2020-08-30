@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Home from '../../pages/Home';
 import NotFound from '../../pages/NotFound';
 
-const Routes: React.FC = () => {
+const Router: React.FC = () => {
   return (
     <Switch>
       <Route exact path="/">
@@ -19,4 +19,4 @@ const Routes: React.FC = () => {
   );
 };
 
-export default Routes;
+export default Router;

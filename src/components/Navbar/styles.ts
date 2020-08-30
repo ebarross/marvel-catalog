@@ -2,12 +2,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: ${(props) => props.theme.colors.dark};
+  background-color: ${(props) => props.theme.colors.darkBlue};
   width: 100%;
   z-index: 100;
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 10px 15px;
 
   @media (min-width: 768px) {

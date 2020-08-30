@@ -5,5 +5,5 @@ export const StyledInput = styled.input`
   border-radius: 5px;
   border: 2px solid ${(props) => props.theme.colors.darkBlue};
   padding: 5px 10px;
-  height: 35px;
+  height: 40px;
 `;
