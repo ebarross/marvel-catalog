@@ -1,9 +1,9 @@
 import React from 'react';
-import { Comic as ComicType } from '../../data/models/comic';
+import { Comic as IComic } from '../../interfaces/comic';
 import { Card, Container, Description, Details, Image, Title } from './styles';
 
 type Props = {
-  data: ComicType;
+  data: IComic;
 };
 
 const Comic: React.FC<Props> = ({ data }) => {

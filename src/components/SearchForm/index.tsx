@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from '../Button';
+import { BiSearch } from 'react-icons/bi';
 import Input from '../Input';
-import { ButtonControl, Container, InputControl } from './styles';
+import { ButtonControl, Container, InputControl, StyledButton } from './styles';
 
 type Props = {
   onSubmit: (search: string) => void;
@@ -30,7 +30,9 @@ const SearchForm: React.FC<Props> = ({ onSubmit }) => {
           />
         </InputControl>
         <ButtonControl>
-          <Button type="submit">Search</Button>
+          <StyledButton type="submit">
+            Search <BiSearch />
+          </StyledButton>
         </ButtonControl>
       </Container>
     </form>

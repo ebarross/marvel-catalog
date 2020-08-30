@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpQuery, HttpStatusCode } from '../data/http/client';
-import { Comic } from '../data/models/comic';
-import HttpClient from '../infra/http/client';
+import HttpClient from '../http/client';
+import { Comic } from '../interfaces/comic';
+import { HttpQuery, HttpStatusCode } from '../interfaces/http';
 
 type FilterQueries = {
   name?: string;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../Button';
 
 export const Container = styled.div`
   display: flex;
@@ -27,5 +28,16 @@ export const ButtonControl = styled.div`
 
   @media (min-width: 768px) {
     width: 20%;
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin-left: 3px;
+    font-size: 16px;
   }
 `;

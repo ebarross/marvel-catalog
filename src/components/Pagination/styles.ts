@@ -13,6 +13,7 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme.colors.darkBlue};
   border: 1px solid ${(props) => props.theme.colors.darkBlue};
   font-size: 14px;
+  line-height: 1;
   padding: 0px 15px;
   margin: 0px 5px;
   border-radius: 3px;
