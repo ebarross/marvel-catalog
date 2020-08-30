@@ -1,16 +1,15 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { HttpRequest, HttpResponse } from '../../data/http/client';
+import axios from './axios';
 
-const API_URL = 'https://gateway.marvel.com:443/v1/public';
-const API_KEY = '816d5731d006897abf3608866d6aa40e';
+const apiKey = process.env.REACT_APP_API_KEY || '';
 
 export default {
   request: async (data: HttpRequest): Promise<HttpResponse> => {
     let axiosResponse: AxiosResponse;
 
-    const baseUrl = `${API_URL}${data.url}`;
     const searchParams = new URLSearchParams();
-    searchParams.append('apikey', API_KEY);
+    searchParams.append('apikey', apiKey);
     searchParams.append('format', 'comic');
     searchParams.append('limit', '10');
 
@@ -20,7 +19,7 @@ export default {
 
     try {
       axiosResponse = await axios.request({
-        url: `${baseUrl}?${searchParams}`,
+        url: `${data.url}?${searchParams}`,
         method: data.method,
         data: data.body,
         headers: data.headers,

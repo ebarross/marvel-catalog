@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ComicList from '../../components/ComicList';
 import Loader from '../../components/Loader';
+import Pagination from '../../components/Pagination';
 import SearchForm from '../../components/SearchForm';
 import { Comic } from '../../data/models/comic';
+import { usePagination } from '../../hooks/pagination';
 import ComicService from '../../services/comic';
 import { Container } from './styles';
 
@@ -10,17 +12,18 @@ const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [comics, setComics] = useState<Comic[]>([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(0);
+  const { page, pages, next, previous, jump, onTotalChange } = usePagination();
 
   useEffect(() => {
     setLoading(true);
 
     ComicService.loadAll({ name: searchQuery, page })
       .then((response) => {
-        setComics(response);
+        onTotalChange(response.total);
+        setComics(response.comics);
       })
       .catch((error) => {
-        // To do: create hook to handling errors
+        // To do: create hook to handle errors
         console.log(error);
       })
       .finally(() => {
@@ -29,7 +32,7 @@ const Home: React.FC = () => {
   }, [page, searchQuery]);
 
   const handleSearchSubmit = (search: string): void => {
-    setPage(0);
+    jump(1);
     setSearchQuery(search);
   };
 
@@ -38,6 +41,15 @@ const Home: React.FC = () => {
       <div className="container">
         <SearchForm onSubmit={handleSearchSubmit} />
         {!loading && comics ? <ComicList comics={comics} /> : <Loader />}
+        {!loading && (
+          <Pagination
+            page={page}
+            pages={pages}
+            previous={previous}
+            next={next}
+            jump={jump}
+          />
+        )}
       </div>
     </Container>
   );

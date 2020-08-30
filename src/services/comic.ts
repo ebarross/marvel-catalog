@@ -8,8 +8,13 @@ type FilterQueries = {
   page?: number;
 };
 
+type ComicsResponse = {
+  comics: Comic[];
+  total: number;
+};
+
 export default {
-  loadAll: async (filterQueries: FilterQueries): Promise<Comic[]> => {
+  loadAll: async (filterQueries: FilterQueries): Promise<ComicsResponse> => {
     const queries: HttpQuery[] = [];
 
     if (filterQueries.name) {
@@ -21,7 +26,7 @@ export default {
     if (filterQueries.page) {
       queries.push({
         name: 'offset',
-        value: String(filterQueries.page),
+        value: String(filterQueries.page - 1),
       });
     }
 
@@ -48,7 +53,10 @@ export default {
 
     switch (response.statusCode) {
       case HttpStatusCode.OK:
-        return comics;
+        return {
+          comics,
+          total: response.body.data.total,
+        };
       default:
         throw new Error(response.body.message);
     }

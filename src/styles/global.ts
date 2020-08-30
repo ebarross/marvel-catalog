@@ -19,7 +19,7 @@ export default createGlobalStyle`
   body, input, button {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 16px;
-    color: ${(props) => props.theme.colors.dark};
+    color: #fff;
   }
 
   h1, h2, h3, h4, h5, h6, strong {

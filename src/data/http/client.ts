@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type HttpMethod = 'POST' | 'GET' | 'PUT' | 'DELETE';
 
 export type HttpQuery = {
