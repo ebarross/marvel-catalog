@@ -18,10 +18,14 @@ export const Card = styled.div`
 `;
 
 export const Image = styled.div`
-  height: 320px;
+  height: 280px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 6px 1px rgb(82 82 82 / 5%), 0 5px 10px 1px rgb(0 0 0 / 24%);
+
+  @media (min-width: 768px) {
+    height: 320px;
+  }
 
   img {
     width: 100%;

@@ -25,11 +25,13 @@
     "prettier"
   ],
   "rules": {
+    "no-unused-expressions": "off",
     "prettier/prettier": "error",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
+    "react/jsx-curly-newline": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-filename-extension": [

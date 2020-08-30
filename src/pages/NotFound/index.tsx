@@ -4,7 +4,8 @@ import { Container } from './styles';
 const NotFound: React.FC = () => {
   return (
     <Container>
-      <h1>Página não encontrada :(</h1>
+      <h1>404</h1>
+      <h1>Page not found. :(</h1>
     </Container>
   );
 };

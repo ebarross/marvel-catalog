@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyledButton } from './styles';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
-}
+};
 
 const Button: React.FC<Props> = ({ children, ...rest }) => {
   return (
-    <StyledButton {...rest} type="button">
+    <StyledButton type="button" {...rest}>
       {children}
     </StyledButton>
   );

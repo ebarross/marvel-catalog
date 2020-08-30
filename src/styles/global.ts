@@ -30,6 +30,10 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .container {
     width: 100%;
     margin: 0px auto;

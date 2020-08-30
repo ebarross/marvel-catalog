@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;
+    margin-bottom: 30px;
   }
 `;
 

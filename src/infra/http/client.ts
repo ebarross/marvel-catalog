@@ -12,8 +12,11 @@ export default {
     const searchParams = new URLSearchParams();
     searchParams.append('apikey', API_KEY);
     searchParams.append('format', 'comic');
-    searchParams.append('offset', '100');
     searchParams.append('limit', '10');
+
+    data.queries?.forEach((q) => {
+      searchParams.append(q.name, q.value);
+    });
 
     try {
       axiosResponse = await axios.request({

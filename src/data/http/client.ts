@@ -1,10 +1,16 @@
 export type HttpMethod = 'POST' | 'GET' | 'PUT' | 'DELETE';
 
+export type HttpQuery = {
+  name: string;
+  value: string;
+};
+
 export type HttpRequest = {
   url: string;
   method: HttpMethod;
   body?: any;
   headers?: any;
+  queries?: HttpQuery[];
 };
 
 export enum HttpStatusCode {
