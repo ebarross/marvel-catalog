@@ -9,7 +9,11 @@ export const Content = styled.div`
   justify-content: center;
 `;
 
-export const Button = styled.button`
+type ButtonProps = {
+  disabled?: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
   background-color: ${(props) => props.theme.colors.darkBlue};
   border: 1px solid ${(props) => props.theme.colors.darkBlue};
   font-size: 14px;
@@ -20,10 +24,15 @@ export const Button = styled.button`
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
+  color: ${(props) => (props.disabled ? '#888' : '#fff')};
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 
   :hover {
-    background-color: #0a3450;
-    border-color: #0a3450;
+    ${(props) =>
+      !props.disabled && {
+        'background-color': '#0a3450',
+        'border-color': '#0a3450',
+      }}
   }
 
   svg {
@@ -34,10 +43,10 @@ export const Button = styled.button`
 export const Pages = styled.div``;
 
 type PageProps = {
-  active: boolean;
+  active?: boolean;
 };
 
-export const Page = styled(Button) <PageProps>`
+export const Page = styled(Button)<PageProps>`
   padding: 0px;
   min-width: 30px;
   padding-left: 5px;

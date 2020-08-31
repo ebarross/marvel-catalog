@@ -16,7 +16,29 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
   const renderPages = (): React.ReactElement[] => {
     const pageList: React.ReactElement[] = [];
 
-    for (let i = 1; i <= PAGES_TO_SHOW; i += 1) {
+    let first;
+    let last;
+
+    // check if page is the first, the last or neither to show page indexes
+    if (page === 1) {
+      first = 1;
+      last = PAGES_TO_SHOW;
+    } else if (page === pages) {
+      first = pages - PAGES_TO_SHOW + 1;
+      last = pages;
+    } else {
+      const offset = Math.floor((PAGES_TO_SHOW - 1) / 2);
+
+      if (page === 2) {
+        first = 1;
+        last = page + offset + 1;
+      } else {
+        first = page - offset;
+        last = page + offset;
+      }
+    }
+
+    for (let i = first; i <= last; i += 1) {
       pageList.push(
         <Page key={i} active={page === i} onClick={() => jump(i)}>
           {i}
@@ -24,11 +46,21 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
       );
     }
 
-    pageList.push(
-      <Page key={pages} active={page === pages} onClick={() => jump(pages)}>
-        {pages}
-      </Page>
-    );
+    if (page === 1) {
+      pageList.push(<Page>...</Page>);
+      pageList.push(
+        <Page key={pages} active={page === pages} onClick={() => jump(pages)}>
+          {pages}
+        </Page>
+      );
+    } else if (page === pages) {
+      pageList.unshift(<Page>...</Page>);
+      pageList.unshift(
+        <Page key={1} active={page === 1} onClick={() => jump(1)}>
+          {1}
+        </Page>
+      );
+    }
 
     return pageList;
   };
@@ -36,14 +68,12 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
   return (
     <Container>
       <Content>
-        {page > 1 && (
-          <Button onClick={previous}>
-            <BiChevronLeft />
-            Previous
-          </Button>
-        )}
+        <Button onClick={previous} disabled={page === 1}>
+          <BiChevronLeft />
+          Previous
+        </Button>
         <Pages>{renderPages()}</Pages>
-        <Button onClick={next}>
+        <Button onClick={next} disabled={page === pages}>
           Next
           <BiChevronRight />
         </Button>

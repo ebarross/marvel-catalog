@@ -37,7 +37,8 @@ export const StyledButton = styled(Button)`
   justify-content: center;
 
   svg {
-    margin-left: 3px;
-    font-size: 16px;
+    margin-left: 4px;
+    margin-top: 2px;
+    font-size: 19px;
   }
 `;
