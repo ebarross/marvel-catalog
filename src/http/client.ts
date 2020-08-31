@@ -1,15 +1,14 @@
 import { AxiosResponse } from 'axios';
-import { HttpRequest, HttpResponse } from '../../data/http/client';
+import config from '../config';
+import { HttpRequest, HttpResponse } from '../interfaces/http';
 import axios from './axios';
-
-const apiKey = process.env.REACT_APP_API_KEY || '';
 
 export default {
   request: async (data: HttpRequest): Promise<HttpResponse> => {
     let axiosResponse: AxiosResponse;
 
     const searchParams = new URLSearchParams();
-    searchParams.append('apikey', apiKey);
+    searchParams.append('apikey', config.apiKey);
     searchParams.append('format', 'comic');
     searchParams.append('limit', '10');
 
