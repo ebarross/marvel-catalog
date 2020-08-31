@@ -36,7 +36,7 @@ const Comic: React.FC<Props> = ({ match }) => {
         ) : (
           <Content>
             <Image />
-            <Details />
+            <Details>{comic?.title}</Details>
           </Content>
         )}
       </div>
