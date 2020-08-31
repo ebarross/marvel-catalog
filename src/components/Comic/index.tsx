@@ -1,13 +1,14 @@
 import React from 'react';
-import { Comic as IComic } from '../../interfaces/comic';
+import { Link } from 'react-router-dom';
+import { Comic as TComic } from '../../interfaces/comic';
 import { Card, Container, Description, Details, Image, Title } from './styles';
 
 type Props = {
-  data: IComic;
+  data: TComic;
 };
 
 const Comic: React.FC<Props> = ({ data }) => {
-  const { title, image, authors } = data;
+  const { id, title, image, authors } = data;
 
   const formatAuthors = (): string => {
     return (
@@ -24,17 +25,19 @@ const Comic: React.FC<Props> = ({ data }) => {
 
   return (
     <Container>
-      <Card>
-        <Image>
-          <img src={image} alt="Comic" />
-        </Image>
-        <Details>
-          <Title>{title}</Title>
-          {authors.length > 0 && (
-            <Description>Authors: {formatAuthors()}</Description>
-          )}
-        </Details>
-      </Card>
+      <Link to={`/comics/${id}`}>
+        <Card>
+          <Image>
+            <img src={image} alt="Comic" />
+          </Image>
+          <Details>
+            <Title>{title}</Title>
+            {authors?.length > 0 && (
+              <Description>Authors: {formatAuthors()}</Description>
+            )}
+          </Details>
+        </Card>
+      </Link>
     </Container>
   );
 };

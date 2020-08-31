@@ -14,7 +14,7 @@ type ComicsResponse = {
 };
 
 export default {
-  loadAll: async (filterQueries: FilterQueries): Promise<ComicsResponse> => {
+  getAll: async (filterQueries: FilterQueries): Promise<ComicsResponse> => {
     const queries: HttpQuery[] = [];
 
     if (filterQueries.name) {
@@ -57,6 +57,30 @@ export default {
           comics,
           total: response.body.data.total,
         };
+      default:
+        throw new Error(response.body.message);
+    }
+  },
+  getById: async (id: string): Promise<Comic | null> => {
+    const response = await HttpClient.request({
+      url: `/comics/${id}`,
+      method: 'GET',
+    });
+
+    const [result] = response.body.data.results;
+    const comic: Comic = {
+      id: result.id,
+      title: result.title,
+      image: `${result.thumbnail.path}.${result.thumbnail.extension}`,
+      authors: result.creators.items.map((c: any) => ({
+        name: c.name,
+        role: c.role,
+      })),
+    };
+
+    switch (response.statusCode) {
+      case HttpStatusCode.OK:
+        return comic || null;
       default:
         throw new Error(response.body.message);
     }

@@ -3,8 +3,8 @@ import ComicList from '../../components/ComicList';
 import Loader from '../../components/Loader';
 import Pagination from '../../components/Pagination';
 import SearchForm from '../../components/SearchForm';
-import { Comic } from '../../data/models/comic';
 import { usePagination } from '../../hooks/pagination';
+import { Comic } from '../../interfaces/comic';
 import ComicService from '../../services/comic';
 import { Container } from './styles';
 
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     setLoading(true);
 
-    ComicService.loadAll({ name: searchQuery, page })
+    ComicService.getAll({ name: searchQuery, page })
       .then((response) => {
         onTotalChange(response.total);
         setComics(response.comics);
