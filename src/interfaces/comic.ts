@@ -1,4 +1,4 @@
-type Author = {
+type Creator = {
   name: string;
   role: string;
 };
@@ -6,6 +6,8 @@ type Author = {
 export type Comic = {
   id: number;
   title: string;
+  description: string;
   image: string;
-  authors: Author[];
+  saleDate: string;
+  creators: Creator[];
 };

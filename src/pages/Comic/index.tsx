@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import ComicDetails from '../../components/ComicDetails';
 import Loader from '../../components/Loader';
 import { Comic as TComic } from '../../interfaces/comic';
 import ComicService from '../../services/comic';
-import { Container, Content, Details, Image } from './styles';
+import { Container } from './styles';
 
 type Props = RouteComponentProps<{ id: string }>;
 
@@ -31,14 +32,7 @@ const Comic: React.FC<Props> = ({ match }) => {
   return (
     <Container>
       <div className="container">
-        {loading ? (
-          <Loader />
-        ) : (
-          <Content>
-            <Image />
-            <Details>{comic?.title}</Details>
-          </Content>
-        )}
+        {!loading && comic ? <ComicDetails data={comic} /> : <Loader />}
       </div>
     </Container>
   );

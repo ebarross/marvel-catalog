@@ -42,8 +42,10 @@ export default {
         return {
           id: result.id,
           title: result.title,
+          description: result.description,
           image: `${result.thumbnail.path}.${result.thumbnail.extension}`,
-          authors: result.creators.items.map((c: any) => ({
+          saleDate: result.dates[0].date.split('T')[0],
+          creators: result.creators.items.map((c: any) => ({
             name: c.name,
             role: c.role,
           })),
@@ -71,8 +73,10 @@ export default {
     const comic: Comic = {
       id: result.id,
       title: result.title,
+      description: result.description,
       image: `${result.thumbnail.path}.${result.thumbnail.extension}`,
-      authors: result.creators.items.map((c: any) => ({
+      saleDate: result.dates[0].date.split('T')[0],
+      creators: result.creators.items.map((c: any) => ({
         name: c.name,
         role: c.role,
       })),

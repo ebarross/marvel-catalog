@@ -8,5 +8,5 @@ export const Container = styled.div`
 export const Content = styled.div`
   background-color: ${(props) => props.theme.colors.dark};
   min-height: calc(100vh - 60px);
-  padding: 15px;
+  padding: 20px;
 `;

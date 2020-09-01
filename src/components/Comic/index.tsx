@@ -8,11 +8,11 @@ type Props = {
 };
 
 const Comic: React.FC<Props> = ({ data }) => {
-  const { id, title, image, authors } = data;
+  const { id, title, image, creators } = data;
 
-  const formatAuthors = (): string => {
+  const formatCreators = (): string => {
     return (
-      authors
+      creators
         // .filter((a) => a.role === 'writer')
         .filter((a, i) => i < 3)
         .map((a) => {
@@ -32,8 +32,8 @@ const Comic: React.FC<Props> = ({ data }) => {
           </Image>
           <Details>
             <Title>{title}</Title>
-            {authors?.length > 0 && (
-              <Description>Authors: {formatAuthors()}</Description>
+            {creators?.length > 0 && (
+              <Description>Creators: {formatCreators()}</Description>
             )}
           </Details>
         </Card>
