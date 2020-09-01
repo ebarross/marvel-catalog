@@ -2,6 +2,7 @@
 import HttpClient from '../http/client';
 import { Comic } from '../interfaces/comic';
 import { HttpQuery, HttpStatusCode } from '../interfaces/http';
+import { ResourceNotFoundError, UnexpectedError } from '../errors';
 
 type FilterQueries = {
   name?: string;
@@ -60,33 +61,35 @@ export default {
           total: response.body.data.total,
         };
       default:
-        throw new Error(response.body.message);
+        throw new UnexpectedError();
     }
   },
-  getById: async (id: string): Promise<Comic | null> => {
+  getById: async (id: string): Promise<Comic> => {
     const response = await HttpClient.request({
       url: `/comics/${id}`,
       method: 'GET',
     });
 
-    const [result] = response.body.data.results;
-    const comic: Comic = {
-      id: result.id,
-      title: result.title,
-      description: result.description,
-      image: `${result.thumbnail.path}.${result.thumbnail.extension}`,
-      saleDate: result.dates[0].date.split('T')[0],
-      creators: result.creators.items.map((c: any) => ({
-        name: c.name,
-        role: c.role,
-      })),
-    };
-
-    switch (response.statusCode) {
-      case HttpStatusCode.OK:
-        return comic || null;
-      default:
-        throw new Error(response.body.message);
+    if (response.statusCode === HttpStatusCode.OK) {
+      const [result] = response.body.data.results;
+      const comic: Comic = {
+        id: result.id,
+        title: result.title,
+        description: result.description,
+        image: `${result.thumbnail.path}.${result.thumbnail.extension}`,
+        saleDate: result.dates[0].date.split('T')[0],
+        creators: result.creators.items.map((c: any) => ({
+          name: c.name,
+          role: c.role,
+        })),
+      };
+      return comic;
     }
+
+    if (response.statusCode === HttpStatusCode.NOT_FOUND) {
+      throw new ResourceNotFoundError('Comic');
+    }
+
+    throw new UnexpectedError();
   },
 };

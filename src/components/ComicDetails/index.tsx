@@ -3,15 +3,16 @@ import React from 'react';
 import moment from 'moment';
 import { Comic } from '../../interfaces/comic';
 import {
+  Column,
   Container,
   Content,
+  Creators,
   Description,
   Details,
   Image,
-  Title,
-  Creators,
-  Section,
   SaleDate,
+  Section,
+  Title,
 } from './styles';
 
 type Props = {
@@ -36,9 +37,11 @@ const ComicDetails: React.FC<Props> = ({ data }) => {
   return (
     <Container>
       <Content>
-        <Image>
-          <img src={image} alt="Comic" />
-        </Image>
+        <Column>
+          <Image>
+            <img src={image} alt="Comic" />
+          </Image>
+        </Column>
         <Details>
           <Section>
             <Title>
@@ -54,7 +57,7 @@ const ComicDetails: React.FC<Props> = ({ data }) => {
             </Section>
           )}
           <Section>
-            {creators && (
+            {creators.length > 0 && (
               <Creators>
                 <p className="section-title">Creators:</p>
                 <ul>{renderCreators()}</ul>

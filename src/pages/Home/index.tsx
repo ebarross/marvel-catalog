@@ -3,6 +3,7 @@ import ComicList from '../../components/ComicList';
 import Loader from '../../components/Loader';
 import Pagination from '../../components/Pagination';
 import SearchForm from '../../components/SearchForm';
+import { useErrorHandler } from '../../hooks/errorHandler';
 import { usePagination } from '../../hooks/pagination';
 import { Comic } from '../../interfaces/comic';
 import ComicService from '../../services/comic';
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
   const [comics, setComics] = useState<Comic[]>([]);
   const [loading, setLoading] = useState(false);
   const { page, pages, next, previous, jump, onTotalChange } = usePagination();
+  const handleError = useErrorHandler();
 
   useEffect(() => {
     setLoading(true);
@@ -22,10 +24,7 @@ const Home: React.FC = () => {
         onTotalChange(response.total);
         setComics(response.comics);
       })
-      .catch((error) => {
-        // To do: create hook to handle errors
-        console.log(error);
-      })
+      .catch(handleError)
       .finally(() => {
         setLoading(false);
       });
@@ -40,15 +39,19 @@ const Home: React.FC = () => {
     <Container>
       <div className="container">
         <SearchForm onSubmit={handleSearchSubmit} />
-        {!loading && comics ? <ComicList comics={comics} /> : <Loader />}
-        {!loading && (
-          <Pagination
-            page={page}
-            pages={pages}
-            previous={previous}
-            next={next}
-            jump={jump}
-          />
+        {!loading && comics ? (
+          <>
+            <ComicList comics={comics} />
+            <Pagination
+              page={page}
+              pages={pages}
+              previous={previous}
+              next={next}
+              jump={jump}
+            />
+          </>
+        ) : (
+          <Loader />
         )}
       </div>
     </Container>

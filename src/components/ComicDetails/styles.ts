@@ -7,16 +7,19 @@ export const Content = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Image = styled.div`
-  width: 100%;
+export const Column = styled.div`
   margin-bottom: 20px;
-  box-shadow: 0 4px 6px 1px rgb(82 82 82 / 5%), 0 5px 10px 1px rgb(0 0 0 / 24%);
 
   @media (min-width: 768px) {
     width: 32%;
     margin-right: 70px;
     margin-bottom: 0px;
   }
+`;
+
+export const Image = styled.div`
+  width: 100%;
+  box-shadow: 0 4px 6px 1px rgb(82 82 82 / 5%), 0 5px 10px 1px rgb(0 0 0 / 24%);
 
   img {
     width: 100%;
