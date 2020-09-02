@@ -22,7 +22,6 @@ const SearchForm: React.FC<Props> = ({ onSubmit }) => {
           <Input
             type="text"
             placeholder="Ex: Black Panther"
-            required
             value={search}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSearch(e.target.value)

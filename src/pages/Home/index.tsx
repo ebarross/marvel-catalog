@@ -7,7 +7,7 @@ import { useErrorHandler } from '../../hooks/errorHandler';
 import { usePagination } from '../../hooks/pagination';
 import { Comic } from '../../interfaces/comic';
 import ComicService from '../../services/comic';
-import { Container } from './styles';
+import { Container, NoContent } from './styles';
 
 const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,16 +40,20 @@ const Home: React.FC = () => {
       <div className="container">
         <SearchForm onSubmit={handleSearchSubmit} />
         {!loading && comics ? (
-          <>
-            <ComicList comics={comics} />
-            <Pagination
-              page={page}
-              pages={pages}
-              previous={previous}
-              next={next}
-              jump={jump}
-            />
-          </>
+          comics.length === 0 ? (
+            <NoContent>No comics found.</NoContent>
+          ) : (
+            <>
+              <ComicList comics={comics} />
+              <Pagination
+                page={page}
+                pages={pages}
+                previous={previous}
+                next={next}
+                jump={jump}
+              />
+            </>
+          )
         ) : (
           <Loader />
         )}

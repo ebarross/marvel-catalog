@@ -5,3 +5,7 @@ export const Container = styled.div`
     padding-top: 20px;
   }
 `;
+
+export const NoContent = styled.h2`
+  text-align: center;
+`;
