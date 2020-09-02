@@ -40,12 +40,16 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
       if (page === 2) {
         first = 1;
         last = page + offset + 1;
+      } else if (page === pages - 1) {
+        first = pages - (offset + 2);
+        last = pages;
       } else {
         first = page - offset;
         last = page + offset;
       }
     }
 
+    // add all indexes in defined range
     for (let i = first; i <= last; i += 1) {
       pageList.push(
         <Page key={i} active={page === i} onClick={() => jump(i)}>
@@ -55,6 +59,7 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
     }
 
     if (page === 1) {
+      // if its first page, add shortcut for last page
       pageList.push(<Page key={-1}>...</Page>);
       pageList.push(
         <Page key={pages} active={page === pages} onClick={() => jump(pages)}>
@@ -62,6 +67,7 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
         </Page>
       );
     } else if (page === pages) {
+      // if its last page, add shortcut for first page
       pageList.unshift(<Page key={-1}>...</Page>);
       pageList.unshift(
         <Page key={1} active={page === 1} onClick={() => jump(1)}>
