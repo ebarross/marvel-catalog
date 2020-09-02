@@ -6,6 +6,10 @@ export const Container = styled.div`
   margin-bottom: 20px;
 
   @media (min-width: 768px) {
+    width: 25%;
+  }
+
+  @media (min-width: 992px) {
     width: 20%;
   }
 `;
@@ -23,7 +27,19 @@ export const Image = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 6px 1px rgb(82 82 82 / 5%), 0 5px 10px 1px rgb(0 0 0 / 24%);
 
+  @media (min-width: 576px) {
+    height: 400px;
+  }
+
+  @media (min-width: 520px) {
+    height: 330px;
+  }
+
   @media (min-width: 768px) {
+    height: 260px;
+  }
+
+  @media (min-width: 992px) {
     height: 320px;
   }
 

@@ -17,9 +17,13 @@ export const InputControl = styled.div`
   margin-bottom: 10px;
 
   @media (min-width: 768px) {
-    width: 80%;
+    width: 75%;
     margin-bottom: 0px;
     margin-right: 20px;
+  }
+
+  @media (min-width: 992px) {
+    width: 80%;
   }
 `;
 
@@ -27,6 +31,10 @@ export const ButtonControl = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
+    width: 25%;
+  }
+
+  @media (min-width: 992px) {
     width: 20%;
   }
 `;

@@ -11,16 +11,13 @@ const Comic: React.FC<Props> = ({ data }) => {
   const { id, title, image, creators } = data;
 
   const formatCreators = (): string => {
-    return (
-      creators
-        // .filter((a) => a.role === 'writer')
-        .filter((a, i) => i < 3)
-        .map((a) => {
-          const fullNameArr: string[] = a.name.split(' ');
-          return fullNameArr[fullNameArr.length - 1];
-        })
-        .join(', ')
-    );
+    return creators
+      .filter((a, i) => i < 3)
+      .map((a) => {
+        const fullNameArr: string[] = a.name.split(' ');
+        return fullNameArr[fullNameArr.length - 1];
+      })
+      .join(', ');
   };
 
   return (

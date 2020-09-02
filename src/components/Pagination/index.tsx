@@ -1,6 +1,14 @@
 import React from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
-import { Button, Container, Content, Page, Pages } from './styles';
+import {
+  Button,
+  Container,
+  Content,
+  Next,
+  Page,
+  Pages,
+  Previous,
+} from './styles';
 
 const PAGES_TO_SHOW = 5;
 
@@ -47,14 +55,14 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
     }
 
     if (page === 1) {
-      pageList.push(<Page>...</Page>);
+      pageList.push(<Page key={-1}>...</Page>);
       pageList.push(
         <Page key={pages} active={page === pages} onClick={() => jump(pages)}>
           {pages}
         </Page>
       );
     } else if (page === pages) {
-      pageList.unshift(<Page>...</Page>);
+      pageList.unshift(<Page key={-1}>...</Page>);
       pageList.unshift(
         <Page key={1} active={page === 1} onClick={() => jump(1)}>
           {1}
@@ -68,15 +76,21 @@ const Pagination: React.FC<Props> = ({ page, pages, next, previous, jump }) => {
   return (
     <Container>
       <Content>
-        <Button onClick={previous} disabled={page === 1}>
-          <BiChevronLeft />
-          Previous
-        </Button>
-        <Pages>{renderPages()}</Pages>
-        <Button onClick={next} disabled={page === pages}>
-          Next
-          <BiChevronRight />
-        </Button>
+        <Previous>
+          <Button onClick={previous} disabled={page === 1}>
+            <BiChevronLeft />
+            Previous
+          </Button>
+        </Previous>
+        <Pages>
+          <div>{renderPages()}</div>
+        </Pages>
+        <Next>
+          <Button onClick={next} disabled={page === pages}>
+            Next
+            <BiChevronRight />
+          </Button>
+        </Next>
       </Content>
     </Container>
   );

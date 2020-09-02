@@ -12,8 +12,12 @@ export const Column = styled.div`
 
   @media (min-width: 768px) {
     width: 32%;
-    margin-right: 70px;
+    margin-right: 40px;
     margin-bottom: 0px;
+  }
+
+  @media (min-width: 1200px) {
+    margin-right: 70px;
   }
 `;
 
@@ -31,7 +35,15 @@ export const Details = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    width: 45%;
+    flex: 1;
+  }
+
+  @media (min-width: 992px) {
+    padding-right: 60px;
+  }
+
+  @media (min-width: 1200px) {
+    padding-right: 150px;
   }
 `;
 
@@ -49,8 +61,13 @@ export const Description = styled.div`
 
 export const Section = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 
   .section-title {
     color: ${(props) => props.theme.colors.orange};
@@ -61,6 +78,12 @@ export const Section = styled.div`
 export const SaleDate = styled.div``;
 
 export const Creators = styled.div`
+  margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0px;
+  }
+
   ul {
     list-style: none;
   }
